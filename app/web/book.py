@@ -1,9 +1,7 @@
 from flask import make_response, Blueprint
-from yushu_book import YuShuBook
 
-# 蓝图（蓝本），blueprint
-# 蓝图和flask核心对象app的接口几乎一样，但不能认为蓝图就是app
-web = Blueprint('web', __name__)
+from . import web
+from yushu_book import YuShuBook
 
 
 # 注解、装饰器，这种路由方式，优雅，但不够灵活。底层源码还是去调用的app.add_url_rule('/hello', view_func=hello)
