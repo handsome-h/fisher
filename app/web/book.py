@@ -1,4 +1,4 @@
-from flask import make_response, Blueprint
+from flask import make_response, Blueprint, request
 
 from . import web
 from yushu_book import YuShuBook
@@ -47,5 +47,16 @@ def search(q, page):
     # jsonify(result)
     return q, page
 
+
 # 同样可以注册路由
 # app.add_url_rule('/hello', view_func=hello)
+
+@web.route('/book/search2')
+def search2():
+    """
+    图书搜索接口，通过request获取查询参数
+    """
+    # request是一个代理模式
+    q = request.args.get('q')
+    print(q)
+    return q
