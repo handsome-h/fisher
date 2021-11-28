@@ -1,6 +1,7 @@
-from flask import make_response, Blueprint, request
+from flask import make_response, request
 
 from . import web
+from app.forms.book import SearchForm
 from yushu_book import YuShuBook
 
 
@@ -56,7 +57,14 @@ def search2():
     """
     图书搜索接口，通过request获取查询参数
     """
-    # request是一个代理模式
-    q = request.args.get('q')
-    print(q)
-    return q
+    # request是一个代理模式，需要有上下文才能使用，直接使用request是没有东西的
+    # q = request.args.get('q')
+    # print(q)
+
+    # 验证层
+    form = SearchForm(request.args)
+    if form.validate():
+        q = form.q.data
+        return q
+    else:
+        return form.errors
