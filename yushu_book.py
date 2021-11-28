@@ -1,3 +1,6 @@
+from flask import current_app
+
+
 class YuShuBook:
     def search_by_keywords(self, q):
-        pass
+        config = current_app.config
