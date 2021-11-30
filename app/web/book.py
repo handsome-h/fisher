@@ -2,7 +2,7 @@ from flask import make_response, request
 
 from . import web
 from app.forms.book import SearchForm
-from yushu_book import YuShuBook
+from app.spider.yushu_book import YuShuBook
 
 
 # 注解、装饰器，这种路由方式，优雅，但不够灵活。底层源码还是去调用的app.add_url_rule('/hello', view_func=hello)
